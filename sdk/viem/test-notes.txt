@@ -1,0 +1,12 @@
+# Test Notes
+
+This file documents all findings, edge cases, and unexpected behaviors observed during integration testing with the custom EVM chain.
+
+Please use it to record:
+- Errors or bugs encountered while using tools (e.g., Hardhat, Foundry, ethers.js)
+- Compatibility issues or limitations specific to this chain
+- RPC response anomalies, revert messages, or chain-specific deviations
+- Workarounds or fixes applied during testing
+- Questions or items that may require further investigation
+
+The goal is to maintain a running log of tool-chain interaction outcomes to aid debugging and ensure transparency.
