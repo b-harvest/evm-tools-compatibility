@@ -214,10 +214,10 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
 
 ### 2.2 P1: Important Tests (Wallet & DApp Integration)
 
-1. **Wallet Compatibility (Metamask, Rabby, Rainbow, Trust, Coinbase)**
-    - [ ]  (A) Add the custom network (RPC URL, Chain ID, Symbol, Explorer URL).
-    - [ ]  (B) Transfer native coins between wallets and confirm on the explorer.
-    - [ ]  (C) Add and transfer a custom ERC-20 token. Confirm balance updates.
+1. **Wallet Compatibility (Metamask, OKX, Rabby, Rainbow, Trust, Coinbase)**
+    - [x]  (A) Add the custom network (RPC URL, Chain ID, Symbol, Explorer URL).
+    - [x]  (B) Transfer native coins between wallets and confirm on the explorer.
+    - [x]  (C) Add and transfer a custom ERC-20 token. Confirm balance updates.
 2. **WalletConnect(https://github.com/b-harvest/evm-tools-compatibility/tree/main/wallets/metamask)**
     - [x]  (A) Set up a test DApp locally that shows a WalletConnect QR code.
     - [x]  (B) Use a mobile wallet (e.g. Metamask) to scan and connect.
