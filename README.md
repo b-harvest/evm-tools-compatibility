@@ -208,6 +208,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
             - [ ]  Check for network or RPC issues (e.g., if the node returns an error).
             - [ ]  Log any unexpected or incorrectly formatted error messages.
 4. **BlockExplorer Integration (Blockscout)**
+   
     - [ ]  (A) Search for a transaction hash and confirm correct details (From/To/Gas).
     - [ ]  (B) Look up the ERC-20 contract address to see token info and holders.
     - [ ]  (C) (If supported) Verify contract source code via **Verify & Publish** process.
@@ -230,8 +231,8 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
     - [ ]  **(B) Inspect Report**: Confirm Mythril performs its symbolic analysis using the on-chain code, generating a report.
     - [ ]  **(C) Check for RPC Errors**: Note any issues fetching data (e.g., chain ID mismatch, connection timeouts).
     - [ ]  **(D) Validate Findings**: If Mythril flags potential vulnerabilities, verify these relate accurately to the on-chain code.
-2. **Debug & Trace API @Hyunwoo Lee** 
-    - [ ]  **(A) Ethereum Trace API**: Use a tracing tool (e.g., `debug_traceTransaction`) to examine internal calls, storage modifications, and deeper transaction details on the custom chain.
+2. **Debug & Trace API** 
+    - [x]  **(A) Ethereum Trace API**: Use a tracing tool (e.g., `debug_traceTransaction`) to examine internal calls, storage modifications, and deeper transaction details on the custom chain. (https://github.com/b-harvest/evm-tools-compatibility/tree/main/debug-apis)
     - [ ]  **(B) Advanced Debugging Tools**:
         - **Tenderly**: Check if you can import transactions from the custom chain, replay or fork them.
         - **DethCode**: Confirm it can parse source code and possibly link to on-chain data for debugging.
