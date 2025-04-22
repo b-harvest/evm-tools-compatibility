@@ -12,13 +12,9 @@ async function deploy(){
 
     await exampleToken.waitForDeployment();
     const addr = await exampleToken.getAddress();
+    console.log('Token deployed to:'+addr)
     deployedAddr = addr;
 
-    console.log(addr);
-    await exampleToken.mint(await deployer.getAddress(),'1'+'0'.repeat(6));
-    console.log("mint");
-    await exampleToken.connect(deployer).transfer(await s1.getAddress(),'1'+'0'.repeat(6));
-    console.log("transferred");
 
 }
 
