@@ -1,0 +1,18 @@
+# Hardhat Compatibility Test
+
+This project demonstrates the compatibility of Hardhat for cross-chain (interchain) development.  
+It uses a basic ERC-20 token contract to test deployment, minting, and transfers.  
+You can compare the execution results across different local or forked Ethereum networks.
+
+---
+
+## Basic Test Environment (Ethereum Fork)
+
+```shell
+npx hardhat test
+```
+
+## Interchain Test (Local Node)
+```shell
+npx hardhat test --network localhost
+```
