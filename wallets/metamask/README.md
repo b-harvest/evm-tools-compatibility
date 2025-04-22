@@ -42,9 +42,14 @@ This PR documents the successful integration of WalletConnect with a locally run
 ### Call transaction
 ![Metamask Connection Screenshot](./screenshot_1.png)
 
-
 ### Web UI test
 ![Metamask Connection Screenshot](./screenshot_2.png)
+
+### WalletConnect selection using Rainbowkit
+![WalletConnect Selection](./screenshot_3.png)
+
+### WalletConnect QR code
+![WalletConnect QR code selector](./screenshot_4.png)
 
 ### 🔎 Verified Transaction (Block #2498)
 
