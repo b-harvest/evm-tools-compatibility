@@ -7,7 +7,7 @@ describe("Ethers.js Core Features Compatibility Test", function () {
   let owner, addr1;
   let tx;
 
-  before(async function () {
+  beforeEach(async function () {
     [owner, addr1] = await ethers.getSigners();
 
     const Token = await ethers.getContractFactory("TokenExample");
@@ -30,7 +30,10 @@ describe("Ethers.js Core Features Compatibility Test", function () {
   });
 
   it("Should allow owner to mint tokens", async function () {
-    await token.mint(addr1.address, 1000);
+    const tx = await token.mint(addr1.address, 1000);
+    const receipt = await tx.wait();
+    expect(receipt.status).to.equal(1);
+
     const balance = await token.balanceOf(addr1.address);
     expect(balance).to.equal(1000);
   });
@@ -74,7 +77,39 @@ describe("Ethers.js Core Features Compatibility Test", function () {
           reject(e);
         }
       });
-      await token.mint(addr1.address, 77);
+      const tx = await token.mint(addr1.address, 77);
+      const receipt = await tx.wait();
+      expect(receipt.status).to.equal(1);
     });
+  });
+
+  it("Should decode mint-related Transfer event log using interface", async function () {
+    const tx = await token.mint(addr1.address, 42);
+    const receipt = await tx.wait();
+    expect(receipt.status).to.equal(1);
+
+    const iface = new ethers.Interface(["event Transfer(address indexed from, address indexed to, uint256 value)"]);
+    const mintLog = receipt.logs.find((log) => log.address === token.target);
+    const parsed = iface.parseLog(mintLog);
+
+    expect(parsed.name).to.equal("Transfer");
+    expect(parsed.args.from).to.equal(ethers.ZeroAddress);
+    expect(parsed.args.to).to.equal(addr1.address);
+    expect(parsed.args.value).to.equal(42n);
+  });
+
+  it("Should query past Transfer events using queryFilter", async function () {
+    const tx = await token.mint(addr1.address, 88);
+    const receipt = await tx.wait();
+    expect(receipt.status).to.equal(1);
+
+    const filter = token.filters.Transfer(ethers.ZeroAddress, addr1.address);
+    const logs = await token.queryFilter(filter);
+
+    expect(logs.length).to.be.greaterThan(0);
+    const latest = logs[logs.length - 1];
+    expect(latest.args.to).to.equal(addr1.address);
+    expect(latest.args.from).to.equal(ethers.ZeroAddress);
+    expect(latest.args.value).to.equal(88n);
   });
 });

@@ -9,7 +9,7 @@ describe("Hardhat Local Chain Compatibility Test", function () {
   let addr1;
   let addr2;
 
-  before(async function () {
+  this.beforeEach(async function () {
     [owner, addr1, addr2] = await ethers.getSigners();
 
     // Deploy a simple ERC20 token
