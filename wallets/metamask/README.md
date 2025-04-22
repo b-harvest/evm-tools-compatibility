@@ -10,7 +10,7 @@ This PR documents the successful integration of WalletConnect with a locally run
 - **RPC Endpoint**: `https://<ngrok-subdomain>.ngrok-free.app`
 - **Local Node**: Tendermint + EVM Layer (RPC on `localhost:8545`)
 - **Frontend**: Test DApp using RainbowKit + wagmi
-- **Mobile Wallets**: MetaMask ✅, OKX ⚠️ (manual setup required)
+- **Mobile Wallets**: MetaMask ✅, OKX ✅  (manual setup required)
 
 ---
 
