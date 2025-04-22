@@ -45,7 +45,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
         - [ ]  Validate that the node returns a **revert** or appropriate error message.
         - [ ]  Document any unexpected RPC or node errors (time-outs, mismatched chain ID, etc.).
 2. **Hardhat Usage(https://github.com/b-harvest/evm-tools-compatibility/tree/main/hardhat/test)**
-    
+   
     1. **Deploy an ERC-20 Contract** 
         - [x]  Create a simple Hardhat **deployment script** (e.g., `scripts/deploy.js`), referencing an ERC-20 contract.
         - [x]  Configure `hardhat.config.js` with the **custom RPC** settings.
@@ -63,9 +63,9 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
         - [x]  Ensure Hardhat reports the **revert** properly.
         - [x]  Document any **RPC errors**, chain ID mismatches, or unusual gas cost issues.
 3. **SDK Integration (ethers.js, viem, web3.js)** 
-    
+   
     - **ethers.js(https://github.com/b-harvest/evm-tools-compatibility/blob/main/hardhat/test/ethers_compatibility.test.js)**
-        
+      
         - **Setup & Provider Configuration**
             - [x]  **Install** ethers (e.g., `npm install ethers`).
             - [x]  **Create** a provider:
@@ -159,7 +159,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
             - [ ]  Document any RPC or transaction validation errors.
     - **web3.js Integration**
         1. **Setup & Web3 Provider**
-            
+           
             - [ ]  **Install** web3 (e.g., `npm install web3`).
             - [ ]  **Create** a Web3 instance:
               
@@ -218,7 +218,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
     - [ ]  (A) Add the custom network (RPC URL, Chain ID, Symbol, Explorer URL).
     - [ ]  (B) Transfer native coins between wallets and confirm on the explorer.
     - [ ]  (C) Add and transfer a custom ERC-20 token. Confirm balance updates.
-2. **WalletConnect**
+2. **WalletConnect(https://github.com/b-harvest/evm-tools-compatibility/tree/main/wallets/metamask)**
     - [x]  (A) Set up a test DApp locally that shows a WalletConnect QR code.
     - [x]  (B) Use a mobile wallet (e.g. Metamask) to scan and connect.
     - [x]  (C) Execute a test transaction (token transfer), sign it, and confirm success on-chain.
