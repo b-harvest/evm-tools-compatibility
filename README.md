@@ -110,8 +110,8 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
             - [x]  Confirm ethers properly surfaces revert messages (if any).
     - **viem Integration**
         - **Setup & Client Configuration**
-            - [ ]  **Install** viem (e.g., `npm install viem`).
-            - [ ]  **Create** a viem client with your RPC URL:
+            - [x]  **Install** viem (e.g., `npm install viem`).
+            - [x]  **Create** a viem client with your RPC URL:
               
                 ```jsx
                 import { createPublicClient, http } from 'viem';
@@ -125,8 +125,8 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
                 
             - [ ]  Optionally, define a custom chain object if needed (different chain ID).
         - **Read from Deployed ERC-20**
-            - [ ]  **Set** the contract details (ABI + address).
-            - [ ]  **Call** read functions (e.g., `symbol`, `totalSupply`, `balanceOf`):
+            - [x]  **Set** the contract details (ABI + address).
+            - [x]  **Call** read functions (e.g., `symbol`, `totalSupply`, `balanceOf`):
               
                 ```jsx
                 const symbol = await client.readContract({
@@ -138,8 +138,8 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
                 
             - [ ]  Verify the returned values match the actual on-chain data.
         - **Write (Transactions)**
-            - [ ]  **Create** a wallet or signer (e.g., using `createWalletClient`).
-            - [ ]  **Send** a token transfer transaction:
+            - [x]  **Create** a wallet or signer (e.g., using `createWalletClient`).
+            - [x]  **Send** a token transfer transaction:
               
                 ```jsx
                 import { parseUnits } from 'viem';
@@ -152,11 +152,12 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
                 });
                 ```
                 
-            - [ ]  **Wait** for the transaction to be confirmed, then verify new balances.
+            - [x]  **Wait** for the transaction to be confirmed, then verify new balances.
         - **Error Handling & Edge Cases**
-            - [ ]  Attempt an **over-balance** transfer to confirm revert behavior.
-            - [ ]  Check for any custom chain config issues (e.g., if the chain ID is not recognized by viem).
-            - [ ]  Document any RPC or transaction validation errors.
+            
+            - [x]  Attempt an **over-balance** transfer to confirm revert behavior.
+            - [x]  Check for any custom chain config issues (e.g., if the chain ID is not recognized by viem).
+            - [x]  Document any RPC or transaction validation errors.
     - **web3.js Integration**
         1. **Setup & Web3 Provider**
            
