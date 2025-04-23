@@ -136,7 +136,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
                 });
                 ```
                 
-            - [ ]  Verify the returned values match the actual on-chain data.
+            - [x]  Verify the returned values match the actual on-chain data.
         - **Write (Transactions)**
             - [x]  **Create** a wallet or signer (e.g., using `createWalletClient`).
             - [x]  **Send** a token transfer transaction:
@@ -154,12 +154,12 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
                 
             - [x]  **Wait** for the transaction to be confirmed, then verify new balances.
         - **Error Handling & Edge Cases**
-            
+          
             - [x]  Attempt an **over-balance** transfer to confirm revert behavior.
             - [x]  Check for any custom chain config issues (e.g., if the chain ID is not recognized by viem).
             - [x]  Document any RPC or transaction validation errors.
     - **web3.js Integration**
-        
+      
         1. **Setup & Web3 Provider**
            
             - [ ]  **Install** web3 (e.g., `npm install web3`).
