@@ -1,5 +1,6 @@
 $ myth analyze --rpc 127.0.0.1:8545 -a 0xDdb5De1bBcb8acd559fd6D843fFA253238eb96B7
 
+```bash
 ==== Integer Arithmetic Bugs ====
 SWC ID: 101
 Severity: High
@@ -37,3 +38,4 @@ Account: [SOMEGUY], balance: 0x0, nonce:0, storage:{}
 Transaction Sequence:
 
 Caller: [CREATOR], function: link_classic_internal(uint64,int64), txdata: 0x95d89b41, value: 0x0
+```
