@@ -2,27 +2,27 @@
 const { createPublicClient, createWalletClient, http, parseEther } = require('viem');
 const { privateKeyToAccount } = require('viem/accounts');
 const { expect } = require('chai');
-const tokenArtifact = require('../artifacts/contracts/TokenExample.sol/TokenExample.json');
-const hre = require("hardhat");
+const tokenArtifact = require('./contractABI/TokenExample.json');
 
 describe("Viem Full Feature Test", function () {
   let publicClient, walletClient, walletAccount, contractAddress, lastTxHash, accounts;
 
   before(async function () {
+    this.timeout(30000);
     publicClient = createPublicClient({
-      chain: { id: hre.network.config.chainId ?? 262144 },
-      transport: http(hre.network.config.url),
-    });
+        chain: { id: 262144 },
+        transport: http('http://127.0.0.1:8545'),
+      });
 
     require('dotenv').config();
     const privateKey = process.env.PRIVATE_KEY;
     walletAccount = privateKeyToAccount(privateKey.startsWith('0x') ? privateKey : '0x' + privateKey);
 
     walletClient = createWalletClient({
-      account: walletAccount,
-      chain: { id: hre.network.config.chainId ?? 262144 },
-      transport: http(hre.network.config.url),
-    });
+        account: walletAccount,
+        chain: { id: 262144 },
+        transport: http('http://127.0.0.1:8545'),
+      });
 
     const deploymentTxHash = await walletClient.deployContract({
       abi: tokenArtifact.abi,
@@ -57,6 +57,7 @@ describe("Viem Full Feature Test", function () {
   });
 
   it("Should mint tokens and get transaction details", async function () {
+    this.timeout(30000);
     const { request } = await publicClient.simulateContract({
       account: walletAccount,
       address: contractAddress,
@@ -86,6 +87,7 @@ describe("Viem Full Feature Test", function () {
   });
 
   it("Should query Transfer event logs", async function () {
+    this.timeout(30000);
     const {request:transferRequest}  = await publicClient.simulateContract({
         account:walletAccount,
         address: contractAddress,

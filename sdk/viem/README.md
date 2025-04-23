@@ -2,11 +2,11 @@
 
 This project demonstrate viem sdk usage test
 
+## Setup
 ```shell
-npx hardhat run scripts/viem_rw_test.js --network localhost
+npm install
 ```
-
-## unit test
+## viem unit test
 ```shell
-npx hardhat test --network localhost
+npx mocha test
 ```
