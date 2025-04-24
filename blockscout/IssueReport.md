@@ -2,11 +2,7 @@
 
 ## Issues
 
-### 1. The number of ERC20 token holders and transfers is not correctly displayed
-
-![erc20_holders](./assets/erc20_holders.png)
-
-![erc20_transfers](./assets/erc20_transfers.png)
+No specific issues were found.
 
 ## Test Cases
 
@@ -26,8 +22,8 @@
     - [x] ✅ Symbol
     - [x] Decimals
   - [x] Are the token state is displayed correctly?
-    - [x] ⚠️ Holders
-    - [x] ⚠️ Transfers
+    - [x] ✅ Holders
+    - [x] ✅ Transfers
 - [x] Verify contract source code via **Verify & Publish** process.
   - [x] Foundry
   - [x] Hardhat
@@ -38,6 +34,10 @@
 ### Transaction Details
 
 ![tx_details](./assets/tx_details.png)
+
+### ERC20 Token Details
+
+![token_details](./assets/token_details.png)
 
 ### Contract Verification
 
