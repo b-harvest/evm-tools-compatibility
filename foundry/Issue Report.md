@@ -91,7 +91,7 @@ When use `.s.sol` script with `forge script`, it works well.
 
 ### Read State
 
-`cast send`
+`cast call`
 
 ![read state](./assets/read-state_cast-call.png)
 

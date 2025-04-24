@@ -100,13 +100,11 @@ forge script script/DeployERC20.s.sol \
 
 `forge script`
 
-```bash
 source .env
-forge script script/Transfer.s.sol:Transfer \
+forge script script/ReadState.s.sol:ReadState \
   --rpc-url $CUSTOM_RPC \
   --chain-id $CHAIN_ID \
   --broadcast
-```
 
 ### ERC20 Transfer
 
@@ -120,12 +118,10 @@ forge script script/Transfer.s.sol:Transfer \
 
 ```bash
 source .env
-forge script script/Transfer.s.sol:Transfer \     
+forge script script/Transfer.s.sol:Transfer \
   --rpc-url $CUSTOM_RPC \
   --chain-id $CHAIN_ID \
-  --broadcast \
-  --sig "run(address)" \
-  $CONTRACT
+  --broadcast
 ```
 
 ### ERC20 Transfer Revert

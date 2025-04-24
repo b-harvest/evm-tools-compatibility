@@ -7,8 +7,8 @@ import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 contract ReadState is Script {
     /// @notice Run entrypoint accepts the token contract address as an argument.
-    /// @param tokenAddr The ERC20 token contract to query.
-    function run(address tokenAddr) external {
+    function run() external {
+        address tokenAddr = vm.envAddress("CONTRACT");
         address acc1 = vm.envAddress("ACCOUNT_1");
 
         console.log("Chain ID:", block.chainid);
