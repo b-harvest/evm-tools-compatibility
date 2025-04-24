@@ -29,7 +29,6 @@ You can run these tests with both `forge` and `cast` and compare the results sid
 
    ```bash
    forge install
-   forge install OpenZeppelin/openzeppelin-contracts@5.3.0
    ```
 
 3. **Create environment file**
@@ -97,20 +96,21 @@ Deploy NFTDescriptor library first.
 ```bash
 source .env
 forge script script/DeployNFTDescriptor.s.sol:DeployNFTDescriptor \
-  --rpc-url $CUSTOM_RPC \  
-  --chain-id $CHAIN_ID \ 
-  --broadcast 
+  --rpc-url $CUSTOM_RPC \
+  --broadcast \
+  --chain-id $CHAIN_ID
 ```
 
 Then, deploy other contracts with NFTDescriptor library address.
 
 ```bash
 source .env
-forge script script/DeployUniswapV3.s.sol:DeployUniswapV3 \        
-  --rpc-url   $CUSTOM_RPC \
-  --chain-id  $CHAIN_ID \
+forge script script/DeployUniswapV3.s.sol:DeployUniswapV3 \
+  --rpc-url $CUSTOM_RPC \
+  --chain-id $CHAIN_ID \
   --broadcast \
-  --libraries "lib/v3-periphery/contracts/libraries/NFTDescriptor.sol:NFTDescriptor:<NFTDescriptor Address>"
+  --slow \
+  --libraries lib/v3-periphery/contracts/libraries/NFTDescriptor.sol:NFTDescriptor:$LIBRARY_CONTRACT
 ```
 
 ### Read State

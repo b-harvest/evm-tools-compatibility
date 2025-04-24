@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.15;
+pragma solidity ^0.7.6;
+pragma abicoder v2;
 
 import "forge-std/Test.sol";
 import "../src/SimpleERC20.sol";
@@ -7,7 +8,7 @@ import "../src/SimpleERC20.sol";
 contract SimpleERC20Test is Test {
     SimpleERC20 token;
     address alice = address(0x1);
-    address bob   = address(0x2);
+    address bob = address(0x2);
 
     function setUp() public {
         // Make Alice the deployer of the token contract
