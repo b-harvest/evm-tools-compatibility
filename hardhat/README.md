@@ -16,3 +16,8 @@ npx hardhat test
 ```shell
 npx hardhat test --network localhost
 ```
+
+### Test for Uniswap deployment
+```shell
+npx hardhat test test/uniswap.test.js --network localhost --show-stack-traces
+```

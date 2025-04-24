@@ -12,7 +12,7 @@ describe("Uniswap V3 Router and Manager Deployment Test", function () {
     let token0, token1, wethAddr, factoryAddr, descriptorAddr;
 
     before(async function () {
-        this.timeout(60000);
+        this.timeout(180000);
         const [deployer] = await ethers.getSigners();
 
         // Deploy Factory
@@ -63,6 +63,15 @@ describe("Uniswap V3 Router and Manager Deployment Test", function () {
         const Router = await ethers.getContractFactory(routerArtifact.abi, routerArtifact.bytecode, deployer);
         router = await Router.deploy(factoryAddr, wethAddr);
         await router.waitForDeployment();
+    });
+
+    it("Should deploy pool from factory successfully", async function () {
+        this.timeout(30000);
+        const token0Addr=await token0.getAddress()
+        const token1Addr=await token1.getAddress()
+        const tx=await factory.createPool(token0Addr,token1Addr,3000);
+        const receipt=await tx.wait();
+        expect(receipt.status).to.equal(1);
     });
 
     it("Should deploy SwapRouter successfully", async function () {
