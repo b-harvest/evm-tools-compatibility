@@ -80,7 +80,7 @@ forge script script/NetworkInfo.s.sol \
 
 ### Deploy Contract
 
-`forge script`
+#### ERC20 Contract
 
 ```bash
 source .env
@@ -88,6 +88,29 @@ forge script script/DeployERC20.s.sol \
   --rpc-url $CUSTOM_RPC \
   --broadcast \
   --chain-id $CHAIN_ID
+```
+
+#### UniswapV3 Contract
+
+Deploy NFTDescriptor library first.
+
+```bash
+source .env
+forge script script/DeployNFTDescriptor.s.sol:DeployNFTDescriptor \
+  --rpc-url $CUSTOM_RPC \  
+  --chain-id $CHAIN_ID \ 
+  --broadcast 
+```
+
+Then, deploy other contracts with NFTDescriptor library address.
+
+```bash
+source .env
+forge script script/DeployUniswapV3.s.sol:DeployUniswapV3 \        
+  --rpc-url   $CUSTOM_RPC \
+  --chain-id  $CHAIN_ID \
+  --broadcast \
+  --libraries "lib/v3-periphery/contracts/libraries/NFTDescriptor.sol:NFTDescriptor:<NFTDescriptor Address>"
 ```
 
 ### Read State

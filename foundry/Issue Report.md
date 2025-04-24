@@ -18,14 +18,45 @@ Even when checking the name and symbol from blockscout, it is not displayed
 
 ![erc20_name-symbol](../blockscout/assets/erc20_name-symbol.png)
 
+### 2. `--slow` flag for sequencial commit for txs
+
+When sending multiple transactions in a single script, the `--slow` flag is mandatory because the execution order of the transactions isn’t guaranteed. Without `--slow`, the nonces in the transactions won’t line up correctly and you’ll get nonce‐mismatch errors.
+
+### Example: Deploy Uniswap V3 Contracts
+
+With --slow flag
+
+![deploy_uniswap_v3.png](./assets/deploy_uniswap_v3.png)
+
+without --slow flag
+
+```bash
+Error: Failed to send transaction
+
+Context:
+- server returned an error response: error code -32000: invalid nonce; got 50, expected 49: invalid sequence: invalid sequence
+```
+
+```bash
+forge --help
+
+...
+        --slow
+          Makes sure a transaction is sent, only after its previous one has been confirmed and succeeded
+```
+
 ## Test Cases
 
 ### Checked
 
-- Deploy an ERC-20 Contract  
-  - [x] ✅ Deploy a minimal ERC-20 contract (e.g., using OpenZeppelin’s ERC20 as a reference).  
-  - [x] ✅ Ensure the deployment targets the custom chain via RPC (e.g., `forge create --rpc-url <CUSTOM_RPC> ...`).  
-  - [x] ✅ Confirm the transaction hash, block number, and contract address.  
+- Deploy Conracts
+  - ERC20
+    - [x] ✅ Deploy a minimal ERC-20 contract (e.g., using OpenZeppelin’s ERC20 as a reference).  
+    - [x] ✅ Ensure the deployment targets the custom chain via RPC (e.g., `forge create --rpc-url <CUSTOM_RPC> ...`).  
+    - [x] ✅ Confirm the transaction hash, block number, and contract address.  
+  
+  - UniswapV3
+    - [x] ✅ Deploy UniswapV3 Contracts
 
 - Read State via Foundry  
   - [x] ❌ Use `test call` (or an equivalent command) to read a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.  
@@ -57,21 +88,24 @@ Even when checking the name and symbol from blockscout, it is not displayed
   
   ```
   
-  - [x] Deploy ERC20 contrat
+  - [x] Deploy Contracts
   
-    ```
-    cast run --rpc-url http://localhost:8545 0x9dbd3dfcdb4f9abe15460b7fcbfcafd107746bb399fba9a33758007791eb63c0
-    Executing previous transactions from the block.
-    Traces:
-      [602412] → new <unknown>@0xf111fE1dD8B81d69CA8165A2b733429CE6C66C84
-        ├─ emit OwnershipTransferred(param0: 0x0000000000000000000000000000000000000000, param1: 0x498B5AeC5D439b733dC2F58AB489783A23FB26dA)
-        ├─ emit Transfer(param0: 0x0000000000000000000000000000000000000000, param1: 0x498B5AeC5D439b733dC2F58AB489783A23FB26dA, param2: 1000000000000000000000 [1e21])
-        └─ ← [Return] 2432 bytes of code
-    
-    
-    Transaction successfully executed.
-    Gas used: 711114
-    ```
+    - [x] ERC20 Contract
+
+      ```bash
+      cast run --rpc-url http://localhost:8545 0x9dbd3dfcdb4f9abe15460b7fcbfcafd107746bb399fba9a33758007791eb63c0
+      Executing previous transactions from the block.
+      Traces:
+        [602412] → new <unknown>@0xf111fE1dD8B81d69CA8165A2b733429CE6C66C84
+          ├─ emit OwnershipTransferred(param0: 0x0000000000000000000000000000000000000000, param1: 0x498B5AeC5D439b733dC2F58AB489783A23FB26dA)
+          ├─ emit Transfer(param0: 0x0000000000000000000000000000000000000000, param1: 0x498B5AeC5D439b733dC2F58AB489783A23FB26dA, param2: 1000000000000000000000 [1e21])
+          └─ ← [Return] 2432 bytes of code
+
+      Transaction successfully executed.
+      Gas used: 711114
+      ```
+
+    - [x] Uniswap V3 Contracts
 
 ### Unchecked
 
@@ -117,11 +151,21 @@ Even when checking the name and symbol from blockscout, it is not displayed
 
 ![network info](./assets/network-info_forge.png)
 
-### Deploy an ERC-20 Contract  
+### Deploy Contracts  
 
-`forge script`
+#### ERC20
 
 ![deploy](./assets/deploy-erc20_forge.png)
+
+#### Uniswap V3 Contracts
+
+Deploy `NFTDescriptor` library
+
+![deploy_nft_descriptor](./assets/deploy_nft_descriptor.png)
+
+Deploy other Uniswap V3 contracts
+
+![deploy_uniswap_v3.png](./assets/deploy_uniswap_v3.png)
 
 ### Read State
 
