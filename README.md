@@ -111,7 +111,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
             - [x]  Try to transfer more tokens than the wallet holds, confirm the transaction **reverts**.
             - [x]  Log any RPC or gas-related **errors**.
             - [x]  Confirm ethers properly surfaces revert messages (if any).
-    - **viem Integration**
+    - **viem Integration (https://github.com/b-harvest/evm-tools-compatibility/tree/main/sdk/viem)** 
         - **Setup & Client Configuration**
             - [x]  **Install** viem (e.g., `npm install viem`).
             - [x]  **Create** a viem client with your RPC URL:
@@ -138,8 +138,9 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
                   functionName: 'symbol',
                 });
                 ```
+                
+            - [x]  Verify the returned values match the actual on-chain data.
 
-            - [ ]  Verify the returned values match the actual on-chain data.
         - **Write (Transactions)**
             - [x]  **Create** a wallet or signer (e.g., using `createWalletClient`).
             - [x]  **Send** a token transfer transaction:
@@ -162,6 +163,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
             - [x]  Check for any custom chain config issues (e.g., if the chain ID is not recognized by viem).
             - [x]  Document any RPC or transaction validation errors.
     - **web3.js Integration**
+      
         1. **Setup & Web3 Provider**
 
             - [ ]  **Install** web3 (e.g., `npm install web3`).
@@ -230,13 +232,13 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
 
 ### 2.3 P2: Supplemental Tests (Security Scanning, Advanced Debug, Extended Explorer)
 
-1. **Mythril (RPC-based Analysis)**
-    - [ ]  **(A) Fetch On-Chain Contract**: Use `myth analyze --rpc <RPC_URL> -a <CONTRACT_ADDRESS>` to pull the deployed contract’s bytecode from the custom chain.
-    - [ ]  **(B) Inspect Report**: Confirm Mythril performs its symbolic analysis using the on-chain code, generating a report.
-    - [ ]  **(C) Check for RPC Errors**: Note any issues fetching data (e.g., chain ID mismatch, connection timeouts).
-    - [ ]  **(D) Validate Findings**: If Mythril flags potential vulnerabilities, verify these relate accurately to the on-chain code.
-2. **Debug & Trace API**
-    - [x]  **(A) Ethereum Trace API**: Use a tracing tool (e.g., `debug_traceTransaction`) to examine internal calls, storage modifications, and deeper transaction details on the custom chain. (<https://github.com/b-harvest/evm-tools-compatibility/tree/main/debug-apis>)
+1. **Mythril (RPC-based Analysis) (https://github.com/b-harvest/evm-tools-compatibility/tree/main/mythril**)
+    - [x]  **(A) Fetch On-Chain Contract**: Use `myth analyze --rpc <RPC_URL> -a <CONTRACT_ADDRESS>` to pull the deployed contract’s bytecode from the custom chain.
+    - [x]  **(B) Inspect Report**: Confirm Mythril performs its symbolic analysis using the on-chain code, generating a report.
+    - [x]  **(C) Check for RPC Errors**: Note any issues fetching data (e.g., chain ID mismatch, connection timeouts).
+    - [x]  **(D) Validate Findings**: If Mythril flags potential vulnerabilities, verify these relate accurately to the on-chain code.
+2. **Debug & Trace API** 
+    - [x]  **(A) Ethereum Trace API**: Use a tracing tool (e.g., `debug_traceTransaction`) to examine internal calls, storage modifications, and deeper transaction details on the custom chain. (https://github.com/b-harvest/evm-tools-compatibility/tree/main/debug-apis)
     - [ ]  **(B) Advanced Debugging Tools**:
         - **Tenderly**: Check if you can import transactions from the custom chain, replay or fork them.
         - **DethCode**: Confirm it can parse source code and possibly link to on-chain data for debugging.
