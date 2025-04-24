@@ -1,19 +1,20 @@
-# EVM Chain Compatibility & Tooling Validation 
+# EVM Chain Compatibility & Tooling Validation
 
 ## 1. Overview
 
 - **Goal**
   
     Verify that a custom EVM chain works seamlessly with commonly used developer tools (Foundry, Hardhat, etc.), wallets (Metamask, etc.), block explorers (Blockscout, etc.), and SDKs (ethers.js, viem, web3.js).
-    
+
 - **Timeframe**
   
     Approximately **1 week** of focused testing.
-    
+
 - **Approach**
-    - This GitHub Issue contains all tasks in the form of checklists.
-    - We will prioritize tasks by **P0 (highest priority), P1,** and **P2**.
-    - Progress and findings will be updated here daily.
+
+  - This GitHub Issue contains all tasks in the form of checklists.
+  - We will prioritize tasks by **P0 (highest priority), P1,** and **P2**.
+  - Progress and findings will be updated here daily.
 
 ---
 
@@ -29,24 +30,25 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
 
 1. **Foundry Usage**
     1. **Deploy an ERC-20 Contract**
-        - [ ]  **Deploy** a minimal ERC-20 contract (e.g., using [OpenZeppelin’s ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol) as a reference).
-        - [ ]  Ensure the deployment **targets the custom chain** via RPC (e.g., `forge create --rpc-url <CUSTOM_RPC> ...`).
-        - [ ]  **Confirm** the transaction hash, block number, and contract address.
+        - [x]  **Deploy** a minimal ERC-20 contract (e.g., using [OpenZeppelin’s ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol) as a reference).
+        - [x]  Ensure the deployment **targets the custom chain** via RPC (e.g., `forge create --rpc-url <CUSTOM_RPC> ...`).
+        - [x]  **Confirm** the transaction hash, block number, and contract address.
     2. **Read State via Foundry**
-        - [ ]  Use `forge call` (or an equivalent command) to **read** a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.
-        - [ ]  Verify that **correct data** (balances, token name/symbol, etc.) is returned from the node.
-        - [ ]  **Check** chain ID or network metadata if available, to confirm you are indeed connected to the correct chain.
+        - [x]  Use `cast call` (or an equivalent command) to **read** a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.
+        - [x]  Verify that **correct data** (balances, token name/symbol, etc.) is returned from the node.
+        - [x]  **Check** chain ID or network metadata if available, to confirm you are indeed connected to the correct chain.
     3. **Write State via Foundry**
-        - [ ]  Perform a **token transfer** using a Foundry command (e.g., using `forge script` or `forge send`) that calls `transfer(<to>, <amount>)`.
-        - [ ]  **Confirm** the transaction is successfully mined on the custom chain (check the transaction hash and block explorer).
-        - [ ]  **Re-check** balances (e.g., `balanceOf`) to ensure the transfer actually took place on-chain.
+        - [x]  Perform a **token transfer** using a Foundry command (e.g., using `forge script` or `cast send`) that calls `transfer(<to>, <amount>)`.
+        - [x]  **Confirm** the transaction is successfully mined on the custom chain (check the transaction hash and block explorer).
+        - [x]  **Re-check** balances (e.g., `balanceOf`) to ensure the transfer actually took place on-chain.
     4. **Error Handling & Edge Cases**
-        - [ ]  Attempt a transfer that exceeds the sender’s balance (to confirm error behavior).
-        - [ ]  Validate that the node returns a **revert** or appropriate error message.
-        - [ ]  Document any unexpected RPC or node errors (time-outs, mismatched chain ID, etc.).
-2. **Hardhat Usage(https://github.com/b-harvest/evm-tools-compatibility/tree/main/hardhat/test)**
-   
-    1. **Deploy an ERC-20 Contract** 
+        - [x]  Attempt a transfer that exceeds the sender’s balance (to confirm error behavior).
+        - [x]  Validate that the node returns a **revert** or appropriate error message.
+        - [x]  Document any unexpected RPC or node errors (time-outs, mismatched chain ID, etc.).
+
+2. **Hardhat Usage(<https://github.com/b-harvest/evm-tools-compatibility/tree/main/hardhat/test>)**
+
+    1. **Deploy an ERC-20 Contract**
         - [x]  Create a simple Hardhat **deployment script** (e.g., `scripts/deploy.js`), referencing an ERC-20 contract.
         - [x]  Configure `hardhat.config.js` with the **custom RPC** settings.
         - [x]  Run `npx hardhat run scripts/deploy.js --network <custom-network>` and confirm the contract is deployed (capture contract address & Tx hash).
@@ -62,27 +64,28 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
         - [x]  Write a basic Hardhat test or script that attempts to transfer more tokens than exist (e.g., over the sender’s balance).
         - [x]  Ensure Hardhat reports the **revert** properly.
         - [x]  Document any **RPC errors**, chain ID mismatches, or unusual gas cost issues.
-3. **SDK Integration (ethers.js, viem, web3.js)** 
-   
-    - **ethers.js(https://github.com/b-harvest/evm-tools-compatibility/blob/main/hardhat/test/ethers_compatibility.test.js)**
-      
+
+3. **SDK Integration (ethers.js, viem, web3.js)**
+
+    - **ethers.js(<https://github.com/b-harvest/evm-tools-compatibility/blob/main/hardhat/test/ethers_compatibility.test.js>)**
+
         - **Setup & Provider Configuration**
             - [x]  **Install** ethers (e.g., `npm install ethers`).
             - [x]  **Create** a provider:
-              
+
                 ```jsx
                 const { ethers } = require("ethers");
                 const provider = new ethers.JsonRpcProvider("<CUSTOM_RPC_URL>");
                 ```
-                
+
             - [x]  Check that `provider.getNetwork()` returns the **expected chain ID**.
         - **Read from Deployed ERC-20**
             - [x]  **Obtain** the contract address, ABI, and use `new ethers.Contract(...)` to instantiate it:
-              
+
                 ```jsx
                 const erc20Contract = new ethers.Contract("<CONTRACT_ADDRESS>", ERC20_ABI, provider);
                 ```
-                
+
             - [x]  **Call** read-only functions:
                 - `symbol()`
                 - `totalSupply()`
@@ -90,19 +93,19 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
             - [x]  **Log** returned values and confirm they match expectations.
         - **Write (Transactions)**
             - [x]  **Create** a signer (wallet) to send transactions:
-              
+
                 ```jsx
                 const wallet = new ethers.Wallet("<PRIVATE_KEY>", provider);
                 const erc20WithSigner = erc20Contract.connect(wallet);
                 ```
-                
+
             - [x]  **Transfer** tokens:
-              
+
                 ```jsx
                 const tx = await erc20WithSigner.transfer("<TO_ADDRESS>", ethers.parseUnits("10", 18));
                 await tx.wait();
                 ```
-                
+
             - [x]  **Check** transaction hash, confirm it’s mined, and verify updated balances.
         - **Error Handling & Edge Cases**
             - [x]  Try to transfer more tokens than the wallet holds, confirm the transaction **reverts**.
@@ -112,7 +115,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
         - **Setup & Client Configuration**
             - [x]  **Install** viem (e.g., `npm install viem`).
             - [x]  **Create** a viem client with your RPC URL:
-              
+
                 ```jsx
                 import { createPublicClient, http } from 'viem';
                 import { mainnet } from 'viem/chains';
@@ -122,12 +125,12 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
                   transport: http(),
                 });
                 ```
-                
+
             - [ ]  Optionally, define a custom chain object if needed (different chain ID).
         - **Read from Deployed ERC-20**
             - [x]  **Set** the contract details (ABI + address).
             - [x]  **Call** read functions (e.g., `symbol`, `totalSupply`, `balanceOf`):
-              
+
                 ```jsx
                 const symbol = await client.readContract({
                   address: '0x...',
@@ -137,10 +140,11 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
                 ```
                 
             - [x]  Verify the returned values match the actual on-chain data.
+
         - **Write (Transactions)**
             - [x]  **Create** a wallet or signer (e.g., using `createWalletClient`).
             - [x]  **Send** a token transfer transaction:
-              
+
                 ```jsx
                 import { parseUnits } from 'viem';
                 
@@ -151,77 +155,77 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
                   args: ['<TO_ADDRESS>', parseUnits("10", 18)],
                 });
                 ```
-                
+
             - [x]  **Wait** for the transaction to be confirmed, then verify new balances.
         - **Error Handling & Edge Cases**
-          
+
             - [x]  Attempt an **over-balance** transfer to confirm revert behavior.
             - [x]  Check for any custom chain config issues (e.g., if the chain ID is not recognized by viem).
             - [x]  Document any RPC or transaction validation errors.
     - **web3.js Integration**
       
         1. **Setup & Web3 Provider**
-           
+
             - [ ]  **Install** web3 (e.g., `npm install web3`).
             - [ ]  **Create** a Web3 instance:
-              
+
                 ```jsx
                 const Web3 = require("web3");
                 const web3 = new Web3("<CUSTOM_RPC_URL>");
                 ```
-                
+
             - [ ]  Verify `web3.eth.net.getId()` or `web3.eth.getChainId()` matches your custom chain ID.
         2. **Read from Deployed ERC-20**
             - [ ]  **Instantiate** contract object:
-              
+
                 ```jsx
                 const contract = new web3.eth.Contract(ERC20_ABI, "<CONTRACT_ADDRESS>");
                 ```
-                
+
             - [ ]  **Call** read functions:
-              
+
                 ```jsx
                 const symbol = await contract.methods.symbol().call();
                 const totalSupply = await contract.methods.totalSupply().call();
                 const balance = await contract.methods.balanceOf("<ADDRESS>").call();
                 ```
-                
+
             - [ ]  Verify the fetched data.
         3. **Write (Transactions)**
             - [ ]  **Set** an account with private key:
-              
+
                 ```jsx
                 web3.eth.accounts.wallet.add("<PRIVATE_KEY>");
                 web3.eth.defaultAccount = "<WALLET_ADDRESS>";
                 ```
-                
+
             - [ ]  **Send** a transfer transaction:
-              
+
                 ```jsx
                 const receipt = await contract.methods
                   .transfer("<TO_ADDRESS>", "10000000000000000000") // 10 tokens with 18 decimals
                   .send({ from: "<WALLET_ADDRESS>", gas: 500000 });
                 
                 ```
-                
+
             - [ ]  Confirm the transaction receipt and updated balances.
         4. **Error Handling & Edge Cases**
             - [ ]  Attempt a transfer that exceeds the account balance → confirm revert.
             - [ ]  Check for network or RPC issues (e.g., if the node returns an error).
             - [ ]  Log any unexpected or incorrectly formatted error messages.
 4. **BlockExplorer Integration (Blockscout)**
-   
+
     - [ ]  (A) Search for a transaction hash and confirm correct details (From/To/Gas).
     - [ ]  (B) Look up the ERC-20 contract address to see token info and holders.
     - [ ]  (C) (If supported) Verify contract source code via **Verify & Publish** process.
 
 ### 2.2 P1: Important Tests (Wallet & DApp Integration)
 
-1. **Wallet Compatibility (Metamask, OKX, Rabby, Rainbow, Trust, Coinbase)(https://github.com/b-harvest/evm-tools-compatibility/blob/main/wallets/README.md)**
+1. **Wallet Compatibility (Metamask, OKX, Rabby, Rainbow, Trust, Coinbase)(<https://github.com/b-harvest/evm-tools-compatibility/blob/main/wallets/README.md>)**
     - [x]  (A) Add the custom network (RPC URL, Chain ID, Symbol, Explorer URL).
     - [x]  (B) Transfer native coins between wallets and confirm on the explorer.
     - [x]  (C) Add and transfer a custom ERC-20 token. Confirm balance updates.
-2. **WalletConnect(https://github.com/b-harvest/evm-tools-compatibility/tree/main/wallets/metamask)**
+2. **WalletConnect(<https://github.com/b-harvest/evm-tools-compatibility/tree/main/wallets/metamask>)**
     - [x]  (A) Set up a test DApp locally that shows a WalletConnect QR code.
     - [x]  (B) Use a mobile wallet (e.g. Metamask) to scan and connect.
     - [x]  (C) Execute a test transaction (token transfer), sign it, and confirm success on-chain.
