@@ -28,38 +28,66 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
 
 ### 2.1 P0: Critical Tests (Foundry, Hardhat, Explorer, SDK)
 
-1. **Foundry Usage**
-    1. **Deploy an ERC-20 Contract**
-        - [x]  **Deploy** a minimal ERC-20 contract (e.g., using [OpenZeppelin’s ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol) as a reference).
-        - [x]  Ensure the deployment **targets the custom chain** via RPC (e.g., `forge create --rpc-url <CUSTOM_RPC> ...`).
-        - [x]  **Confirm** the transaction hash, block number, and contract address.
+1. **Foundry Usage(https://github.com/b-harvest/evm-tools-compatibility/tree/main/foundry)**
+    
+    1. **Deploy**
+    
+        **ERC-20 Contract**
+    
+        1. [x] **Deploy** a minimal ERC-20 contract (e.g., using [OpenZeppelin’s ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol) as a reference).
+        2. [x] Ensure the deployment **targets the custom chain** via RPC (e.g., `forge create --rpc-url <CUSTOM_RPC> ...`).
+        3. [x] **Confirm** the transaction hash, block number, and contract address.
+    
+        **Uniswap**
+    
+        - [ ] Deploy Uniswap
+    
     2. **Read State via Foundry**
         - [x]  Use `cast call` (or an equivalent command) to **read** a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.
         - [x]  Verify that **correct data** (balances, token name/symbol, etc.) is returned from the node.
         - [x]  **Check** chain ID or network metadata if available, to confirm you are indeed connected to the correct chain.
+    
     3. **Write State via Foundry**
         - [x]  Perform a **token transfer** using a Foundry command (e.g., using `forge script` or `cast send`) that calls `transfer(<to>, <amount>)`.
         - [x]  **Confirm** the transaction is successfully mined on the custom chain (check the transaction hash and block explorer).
         - [x]  **Re-check** balances (e.g., `balanceOf`) to ensure the transfer actually took place on-chain.
+    
     4. **Error Handling & Edge Cases**
         - [x]  Attempt a transfer that exceeds the sender’s balance (to confirm error behavior).
         - [x]  Validate that the node returns a **revert** or appropriate error message.
         - [x]  Document any unexpected RPC or node errors (time-outs, mismatched chain ID, etc.).
+    
+    5. **Cast Run(= Runs a published transaction in a local environment and prints the trace.)**
+    
+        - [x] Perform and validate cast-run for a erc20 transfer transaction.
+        - [x] Perform and validate cast-run for a erc20 deplpyment transaction.
+    
+2. **Hardhat Usage(https://github.com/b-harvest/evm-tools-compatibility/tree/main/hardhat/test)**
 
-2. **Hardhat Usage(<https://github.com/b-harvest/evm-tools-compatibility/tree/main/hardhat/test>)**
+    1. **Deploy**
 
-    1. **Deploy an ERC-20 Contract**
-        - [x]  Create a simple Hardhat **deployment script** (e.g., `scripts/deploy.js`), referencing an ERC-20 contract.
-        - [x]  Configure `hardhat.config.js` with the **custom RPC** settings.
-        - [x]  Run `npx hardhat run scripts/deploy.js --network <custom-network>` and confirm the contract is deployed (capture contract address & Tx hash).
+        **ERC-20 Contract**
+
+        1. [x] Create a simple Hardhat **deployment script** (e.g., `scripts/deploy.js`), referencing an ERC-20 contract.
+        2. [x] Configure `hardhat.config.js` with the **custom RPC** settings.
+        3. [x] Run `npx hardhat run scripts/deploy.js --network <custom-network>` and confirm the contract is deployed (capture contract address & Tx hash).
+
+        **Uniswap**
+
+        - [ ] Deploy Uniswap
+
     2. **Read State (contract calls)**
+
         - [x]  Using a Hardhat task or script, **call** the deployed ERC-20 contract’s read functions: `totalSupply()`, `symbol()`, `balanceOf(...)`.
         - [x]  Confirm you can fetch these values **directly from the chain**.
         - [x]  Log output to ensure the data matches expectations (e.g., if total supply is 1,000 tokens, check that the read is correct).
+
     3. **Write State (transactions)**
+
         - [x]  Execute a **token transfer** transaction, such as `await contract.transfer(recipient, amount)`.
         - [x]  Wait for the transaction to be mined, then **validate** new balances on-chain (re-check with `balanceOf`).
         - [x]  Optionally, confirm via a **console log** or a block explorer that the transaction succeeded.
+
     4. **Error Handling & Testing**
         - [x]  Write a basic Hardhat test or script that attempts to transfer more tokens than exist (e.g., over the sender’s balance).
         - [x]  Ensure Hardhat reports the **revert** properly.
@@ -213,6 +241,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
             - [ ]  Attempt a transfer that exceeds the account balance → confirm revert.
             - [ ]  Check for network or RPC issues (e.g., if the node returns an error).
             - [ ]  Log any unexpected or incorrectly formatted error messages.
+    
 4. **BlockExplorer Integration (Blockscout)**
 
     - [ ]  (A) Search for a transaction hash and confirm correct details (From/To/Gas).
