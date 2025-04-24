@@ -43,6 +43,36 @@ Even when checking the name and symbol from blockscout, it is not displayed
   - [x] ✅ Validate that the node returns a revert or appropriate error message.  
   - [x] ✅ Document any unexpected RPC or node errors (time-outs, mismatched chain ID, etc.).
 
+- [x]  Simulate transactions
+
+  - [x] Transfer erc20
+  
+  ```shell
+  cast run --rpc-url http://localhost:8545 0xd52e212ccdaa85b80146fce23693e1e17aa0806b5a0b568916c73e4c7c0a92d4
+  Executing previous transactions from the block.
+  Traces:
+    [12866] 0xd37f26d05157cfF9944Af072Bc8eA2531278e527::transfer(0x40a0cb1C63e026A81B55EE1308586E21eec1eFa9, 1000000000000000000 [1e18])
+      ├─ emit Transfer(param0: 0x498B5AeC5D439b733dC2F58AB489783A23FB26dA, param1: 0x40a0cb1C63e026A81B55EE1308586E21eec1eFa9, param2: 1000000000000000000 [1e18])
+      └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000000000000001
+  
+  ```
+  
+  - [x] Deploy ERC20 contrat
+  
+    ```
+    cast run --rpc-url http://localhost:8545 0x9dbd3dfcdb4f9abe15460b7fcbfcafd107746bb399fba9a33758007791eb63c0
+    Executing previous transactions from the block.
+    Traces:
+      [602412] → new <unknown>@0xf111fE1dD8B81d69CA8165A2b733429CE6C66C84
+        ├─ emit OwnershipTransferred(param0: 0x0000000000000000000000000000000000000000, param1: 0x498B5AeC5D439b733dC2F58AB489783A23FB26dA)
+        ├─ emit Transfer(param0: 0x0000000000000000000000000000000000000000, param1: 0x498B5AeC5D439b733dC2F58AB489783A23FB26dA, param2: 1000000000000000000000 [1e21])
+        └─ ← [Return] 2432 bytes of code
+    
+    
+    Transaction successfully executed.
+    Gas used: 711114
+    ```
+
 ### Unchecked
 
 - Gas Estimation Verification  
