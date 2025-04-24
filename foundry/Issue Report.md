@@ -30,7 +30,7 @@ When use `.s.sol` script with `forge script`, it works well.
   - [x] ✅ Check chain ID or network metadata if available, to confirm you are indeed connected to the correct chain.  
 
 - Write State via Foundry  
-  - [x] ✅ Perform a token transfer using a Foundry command (e.g., using `forge script` or `forge send`) that calls `transfer(<to>, <amount>)`.  
+  - [x] ✅ Perform a token transfer using a Foundry command (e.g., using `forge script` or `cast send`) that calls `transfer(<to>, <amount>)`.  
   - [x] ✅ Confirm the transaction is successfully mined on the custom chain (check the transaction hash and block explorer).  
   - [x] ✅ Re-check balances (e.g., `balanceOf`) to ensure the transfer actually took place on-chain.  
 
@@ -69,7 +69,7 @@ When use `.s.sol` script with `forge script`, it works well.
   - [ ] Deploy and call a contract that reads `block.number` and `block.timestamp`, ensuring values are populated accurately (given CometBFT’s genesis at block 1).  
 
 - Static Call vs. Transaction Consistency  
-  - [ ] Compare results between `forge call` (static) and `forge send` (transaction) for the same read-only function to confirm consistency.
+  - [ ] Compare results between `cast call` (static) and `cast send` (transaction) for the same read-only function to confirm consistency.
 
 ## Proof of Test
 
