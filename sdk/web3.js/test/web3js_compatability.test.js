@@ -32,10 +32,10 @@ describe("Web3.js Compatibility Test", function () {
 
   it("Should mint tokens (send transaction)", async function () {
     this.timeout(30000);
-    const receipt = await deployedToken.methods.mint(accounts[0], 1000).send({ from: accounts[0], block: 'latest' });
+    const receipt = await deployedToken.methods.mint(accounts[0], 1000).send({ from: accounts[0], block: 'latest', gas: 5000000});
     const txHash = receipt.transactionHash;
     const confirmedReceipt = await web3.eth.getTransactionReceipt(txHash);
-    expect(receipt.status).to.be.true;
+    expect(confirmedReceipt.status).to.be.true;
   });
 
   it("Should read balance (call)", async function () {
