@@ -21,3 +21,21 @@ npx hardhat test --network localhost
 ```shell
 npx hardhat test test/uniswap.test.js --network localhost --show-stack-traces
 ```
+
+### Test Compile for Uniswap v3-core
+```shell
+cd external/v3-core
+git submodule init
+git submodule update
+npm install
+npx hardhat compile
+```
+
+### Test Compile for Uniswap v3-periphery
+```shell
+cd external/v3-periphery
+git submodule init
+git submodule update
+npm install
+npx hardhat compile
+```
