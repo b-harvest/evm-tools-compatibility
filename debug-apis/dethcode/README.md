@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the results of testing **DethCode** with a custom blockchain environment.  
+This document outlines the investigation of **DethCode** with a custom blockchain environment.  
 The goal of this investigation was to verify whether **DethCode** could retrieve contract source code and perform its analysis functionalities on non-Ethereum blockchains.
 
 ## Key Findings
