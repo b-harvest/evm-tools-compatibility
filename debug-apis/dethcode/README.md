@@ -12,7 +12,6 @@ The goal of this investigation was to verify whether **DethCode** could retrieve
 
     DethCode displayed the following:
 
-   _Insert screenshot here:_  
    ![Dethcode Screenshot](./connection-error.png)
 
 
@@ -23,7 +22,7 @@ It is limited to Ethereum mainnet and its official testnets.
 
 ### Recommendation
 
-- For contract analysis on custom blockchains, consider alternative tools that support arbitrary RPC endpoints (e.g., Hardhat, Foundry, Tenderly, etc.).
+- For contract analysis on custom blockchains, consider alternative tools that support arbitrary RPC endpoints (e.g., Hardhat, Foundry, etc.).
 - Monitor DethCode’s future updates for potential multi-chain support.
 
 ## Additional References
