@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@tenderly/sdk": "^0.3.1",
+    "chai": "^5.2.0",
+    "dotenv": "^16.5.0",
+    "node-fetch": "^2.7.0"
+  }
+}
