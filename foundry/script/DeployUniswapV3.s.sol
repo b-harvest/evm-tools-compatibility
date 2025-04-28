@@ -29,7 +29,7 @@ contract DeployUniswapV3 is Script {
     WETH9Mock weth = new WETH9Mock();
     console.log("WETH9Mock:", address(weth));
 
-    // artifactPath 는 `remappings.txt` 기준 상대경로:ContractName
+    // artifactPath is specified as the relative path according to remappings.txt, ending with the contract name.
     address descriptor = deployCode(
       "lib/v3-periphery/contracts/NonfungibleTokenPositionDescriptor.sol:NonfungibleTokenPositionDescriptor",
       abi.encode(address(weth), "ETH")
