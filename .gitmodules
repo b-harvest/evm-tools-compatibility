@@ -7,3 +7,9 @@
 [submodule "foundry/lib/openzeppelin-contracts"]
 	path = foundry/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "hardhat/external/v3-core"]
+	path = hardhat/external/v3-core
+	url = https://github.com/Uniswap/v3-core
+[submodule "hardhat/external/v3-periphery"]
+	path = hardhat/external/v3-periphery
+	url = https://github.com/Uniswap/v3-periphery
