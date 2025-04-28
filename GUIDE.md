@@ -2,6 +2,22 @@
 This guide walks you through the steps to run the custom EVM chain locally and use a pre-funded account for testing.
 It ensures all developers/testers are using a consistent environment and can immediately begin testing with a rich account.
 
+## :white_check_mark: Modify cosmos/evm script for testing
+
+Modify `## Start the node` part of ./local_node.sh script
+You should add `--pruning nothing` flag to preserve the historycal data state.
+It is needed for testing JSON-RPC apis.
+
+```bash
+# Start the node
+evmd start "$TRACE" \
+  --pruning nothing \
+  --log_level $LOGLEVEL \
+  --minimum-gas-prices=0.0001atest \
+  --home "$HOMEDIR" \
+  --json-rpc.api eth,txpool,personal,net,debug,web3 \
+  --chain-id "$CHAINID"
+```
 
 ## :white_check_mark: Run evmd
 ```bash
@@ -16,6 +32,7 @@ This will start a local custom EVM chain node with several pre-funded accounts. 
 
 ```bash
 evmd start \
+  --pruning nothing \
   --log_level info \
   --minimum-gas-prices=0.0001atest \
   --json-rpc.api eth,txpool,personal,net,debug,web3 \

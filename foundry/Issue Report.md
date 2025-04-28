@@ -14,6 +14,10 @@ When use `.s.sol` script with `forge script`, it works well.
 
 ![pass](./assets/read-state_forge-script.png)
 
+Even when checking the name and symbol from blockscout, it is not displayed
+
+![erc20_name-symbol](../blockscout/assets/erc20_name-symbol.png)
+
 ## Test Cases
 
 ### Checked

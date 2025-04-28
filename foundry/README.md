@@ -100,11 +100,13 @@ forge script script/DeployERC20.s.sol \
 
 `forge script`
 
+```bash
 source .env
 forge script script/ReadState.s.sol:ReadState \
   --rpc-url $CUSTOM_RPC \
   --chain-id $CHAIN_ID \
   --broadcast
+```
 
 ### ERC20 Transfer
 

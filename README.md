@@ -29,39 +29,40 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
 ### 2.1 P0: Critical Tests (Foundry, Hardhat, Explorer, SDK)
 
 1. **Foundry Usage(https://github.com/b-harvest/evm-tools-compatibility/tree/main/foundry)**
-    
+
     1. **Deploy**
-    
+
         **ERC-20 Contract**
-    
+
         1. [x] **Deploy** a minimal ERC-20 contract (e.g., using [OpenZeppelin’s ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol) as a reference).
         2. [x] Ensure the deployment **targets the custom chain** via RPC (e.g., `forge create --rpc-url <CUSTOM_RPC> ...`).
         3. [x] **Confirm** the transaction hash, block number, and contract address.
-    
+
         **Uniswap**
-    
+
         - [ ] Deploy Uniswap
-    
+
     2. **Read State via Foundry**
-        - [x]  Use `cast call` (or an equivalent command) to **read** a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.
-        - [x]  Verify that **correct data** (balances, token name/symbol, etc.) is returned from the node.
-        - [x]  **Check** chain ID or network metadata if available, to confirm you are indeed connected to the correct chain.
-    
+        - [x] Use `test call` (or an equivalent command) to read a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.  
+        - [x] Use `forge script` (or an equivalent command) to read a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.  
+        - [x] Verify that correct data (balances, token name/symbol, etc.) is returned from the node.  
+        - [x] Check chain ID or network metadata if available, to confirm you are indeed connected to the correct chain.  
+
     3. **Write State via Foundry**
         - [x]  Perform a **token transfer** using a Foundry command (e.g., using `forge script` or `cast send`) that calls `transfer(<to>, <amount>)`.
         - [x]  **Confirm** the transaction is successfully mined on the custom chain (check the transaction hash and block explorer).
         - [x]  **Re-check** balances (e.g., `balanceOf`) to ensure the transfer actually took place on-chain.
-    
+
     4. **Error Handling & Edge Cases**
         - [x]  Attempt a transfer that exceeds the sender’s balance (to confirm error behavior).
         - [x]  Validate that the node returns a **revert** or appropriate error message.
         - [x]  Document any unexpected RPC or node errors (time-outs, mismatched chain ID, etc.).
-    
+
     5. **Cast Run(= Runs a published transaction in a local environment and prints the trace.)**
-    
+
         - [x] Perform and validate cast-run for a erc20 transfer transaction.
         - [x] Perform and validate cast-run for a erc20 deplpyment transaction.
-    
+
 2. **Hardhat Usage(https://github.com/b-harvest/evm-tools-compatibility/tree/main/hardhat/test)**
 
     1. **Deploy**
@@ -244,9 +245,26 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
     
 4. **BlockExplorer Integration (Blockscout)**
 
-    - [ ]  (A) Search for a transaction hash and confirm correct details (From/To/Gas).
-    - [ ]  (B) Look up the ERC-20 contract address to see token info and holders.
-    - [ ]  (C) (If supported) Verify contract source code via **Verify & Publish** process.
+    - [x] After starting the Blockscout instances, are there any abnormal logs output from evmd when started with the `--log-level debug` option?
+    - [x] Search for a transaction hash and confirm correct details (From/To/Gas).
+        - [x] Details
+        - [x] Token transfers
+        - [x] Internal txs
+        - [x] Logs
+        - [x] State
+        - [x] Raw trace
+    - [x] Look up the ERC-20 contract address to see token info and holders.
+        - [x] Are the token metdata is displayed corectly?
+            - [x] Name
+            - [x] Symbol
+            - [x] Decimals
+    - [x] Are the token state is displayed correctly?
+        - [x] Holders
+        - [x] Transfers
+    - [x] Verify contract source code via **Verify & Publish** process.
+        - [x] Foundry
+        - [x] Hardhat
+    - [x] Charts and Stats
 
 ### 2.2 P1: Important Tests (Wallet & DApp Integration)
 
