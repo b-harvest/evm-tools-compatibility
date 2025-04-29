@@ -40,7 +40,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
 
         **Uniswap**
 
-        - [ ] Deploy Uniswap
+        - [x] Deploy Uniswap
 
     2. **Read State via Foundry**
         - [x] Use `test call` (or an equivalent command) to read a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.  
@@ -75,7 +75,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
 
         **Uniswap**
 
-        - [ ] Deploy Uniswap
+        - [x] Deploy Uniswap
 
     2. **Read State (contract calls)**
 
@@ -195,23 +195,23 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
       
         1. **Setup & Web3 Provider**
 
-            - [ ]  **Install** web3 (e.g., `npm install web3`).
-            - [ ]  **Create** a Web3 instance:
+            - [x]  **Install** web3 (e.g., `npm install web3`).
+            - [x]  **Create** a Web3 instance:
 
                 ```jsx
                 const Web3 = require("web3");
                 const web3 = new Web3("<CUSTOM_RPC_URL>");
                 ```
 
-            - [ ]  Verify `web3.eth.net.getId()` or `web3.eth.getChainId()` matches your custom chain ID.
+            - [x]  Verify `web3.eth.net.getId()` or `web3.eth.getChainId()` matches your custom chain ID.
         2. **Read from Deployed ERC-20**
-            - [ ]  **Instantiate** contract object:
+            - [x]  **Instantiate** contract object:
 
                 ```jsx
                 const contract = new web3.eth.Contract(ERC20_ABI, "<CONTRACT_ADDRESS>");
                 ```
 
-            - [ ]  **Call** read functions:
+            - [x]  **Call** read functions:
 
                 ```jsx
                 const symbol = await contract.methods.symbol().call();
@@ -219,16 +219,16 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
                 const balance = await contract.methods.balanceOf("<ADDRESS>").call();
                 ```
 
-            - [ ]  Verify the fetched data.
+            - [x]  Verify the fetched data.
         3. **Write (Transactions)**
-            - [ ]  **Set** an account with private key:
+            - [x]  **Set** an account with private key:
 
                 ```jsx
                 web3.eth.accounts.wallet.add("<PRIVATE_KEY>");
                 web3.eth.defaultAccount = "<WALLET_ADDRESS>";
                 ```
 
-            - [ ]  **Send** a transfer transaction:
+            - [x]  **Send** a transfer transaction:
 
                 ```jsx
                 const receipt = await contract.methods
@@ -237,11 +237,11 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
                 
                 ```
 
-            - [ ]  Confirm the transaction receipt and updated balances.
+            - [x]  Confirm the transaction receipt and updated balances.
         4. **Error Handling & Edge Cases**
-            - [ ]  Attempt a transfer that exceeds the account balance → confirm revert.
-            - [ ]  Check for network or RPC issues (e.g., if the node returns an error).
-            - [ ]  Log any unexpected or incorrectly formatted error messages.
+            - [x]  Attempt a transfer that exceeds the account balance → confirm revert.
+            - [x]  Check for network or RPC issues (e.g., if the node returns an error).
+            - [x]  Log any unexpected or incorrectly formatted error messages.
     
 4. **BlockExplorer Integration (Blockscout)**
 
@@ -286,7 +286,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
     - [x]  **(D) Validate Findings**: If Mythril flags potential vulnerabilities, verify these relate accurately to the on-chain code.
 2. **Debug & Trace API** 
     - [x]  **(A) Ethereum Trace API**: Use a tracing tool (e.g., `debug_traceTransaction`) to examine internal calls, storage modifications, and deeper transaction details on the custom chain. (https://github.com/b-harvest/evm-tools-compatibility/tree/main/debug-apis)
-    - [ ]  **(B) Advanced Debugging Tools**:
+    - [x]  **(B) Advanced Debugging Tools**:
         - **Tenderly**: Check if you can import transactions from the custom chain, replay or fork them.
         - **DethCode**: Confirm it can parse source code and possibly link to on-chain data for debugging.
 
