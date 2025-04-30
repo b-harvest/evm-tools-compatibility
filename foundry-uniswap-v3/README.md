@@ -20,8 +20,8 @@ It uses a Uniswap V3 contracts to validate deployment of contracts with complex 
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/<your-org>/evm-tools-compatibility.git
-   cd evm-tools-compatibility/foundry
+   git clone https://github.com/b-harvest/evm-tools-compatibility.git
+   cd evm-tools-compatibility/foundry-uniswap-v3
    ```
 
 2. **Install dependencies**
