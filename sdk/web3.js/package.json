@@ -8,5 +8,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "chai": "^4.5.0",
+    "web3": "^1.10.0"
+  }
 }
