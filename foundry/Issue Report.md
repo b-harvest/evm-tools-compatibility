@@ -2,11 +2,13 @@
 
 ## Issues
 
-### 1. `cast call` command use geth version >= 1.13.x
+### 1. Solidity Compiler Version
+
+If contract is compiled by solidity compiler that is compatibile with geth > 1.10.26 (cosmos/evm is compatible with geth v1.10.26) some actions can fail.
+
+### Example: `cast call` querying data located at `memory` fails
 
 When querying the state values of an ERC20 contract using `cast call`, an error is displayed stating that opcode `0x5e` is undefined when calling the `name()` or `symbol()` methods that use data locacion specifier is `memory`.
-
-It seems that `cast call` command uses `MCOPY` opcode ([`0x5e`](https://www.ethervm.io/#5E)).
 
 ![fail](./assets/read-state_cast-call.png)
 
@@ -14,7 +16,7 @@ When use `.s.sol` script with `forge script`, it works well.
 
 ![pass](./assets/read-state_forge-script.png)
 
-Even when checking the name and symbol from blockscout, it is not displayed
+When checking the name and symbol from blockscout, it is not displayed
 
 ![erc20_name-symbol](../blockscout/assets/erc20_name-symbol.png)
 
@@ -28,7 +30,7 @@ Even when checking the name and symbol from blockscout, it is not displayed
   - [x] ✅ Confirm the transaction hash, block number, and contract address.  
 
 - Read State via Foundry  
-  - [x] ❌ Use `test call` (or an equivalent command) to read a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.  
+  - [x] ✅ Use `cast call` (or an equivalent command) to read a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.  
   - [x] ✅ Use `forge script` (or an equivalent command) to read a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.  
   - [x] ✅ Verify that correct data (balances, token name/symbol, etc.) is returned from the node.  
   - [x] ✅ Check chain ID or network metadata if available, to confirm you are indeed connected to the correct chain.  
@@ -59,7 +61,7 @@ Even when checking the name and symbol from blockscout, it is not displayed
   
   - [x] Deploy ERC20 contrat
   
-    ```
+    ```bash
     cast run --rpc-url http://localhost:8545 0x9dbd3dfcdb4f9abe15460b7fcbfcafd107746bb399fba9a33758007791eb63c0
     Executing previous transactions from the block.
     Traces:

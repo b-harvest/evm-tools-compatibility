@@ -30,7 +30,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
 
 1. **Foundry Usage(https://github.com/b-harvest/evm-tools-compatibility/tree/main/foundry)**
 
-    1. **Deploy**
+    1. **Deploy Contracts**
 
         **ERC-20 Contract**
 
@@ -40,7 +40,7 @@ Below are the tasks grouped by **priority**. Each task has its own checklist.
 
         **Uniswap**
 
-        - [x] Deploy Uniswap
+        - [x] Deploy Uniswap V3 contracts
 
     2. **Read State via Foundry**
         - [x] Use `test call` (or an equivalent command) to read a function such as `totalSupply()`, `balanceOf(<address>)`, or `symbol()` from the deployed ERC-20 contract.  

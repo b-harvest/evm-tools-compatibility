@@ -21,7 +21,7 @@ You can run these tests with both `forge` and `cast` and compare the results sid
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/<your-org>/evm-tools-compatibility.git
+   git clone https://github.com/b-harvest/evm-tools-compatibility.git
    cd evm-tools-compatibility/foundry
    ```
 
